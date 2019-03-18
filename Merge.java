@@ -17,25 +17,34 @@ public class Merge{
         ans[n + m] = N[n];
         n++;
         nRemaining--;
+      //  System.out.println("n " + n);
       } else {
         ans[n + m] = M[m];
         m++;
         mRemaining--;
+      //  System.out.println("m " + m);
       }
     }
+      System.out.println("out of the loop");
 
     //Now we still have the rest of the maximum array leftOver
     //find the maximum array, lets call it bigger
     //atleast one of these will be 0
+    //System.out.println(mRemaining);
+    //System.out.println(nRemaining);
     int bi = Math.max(mRemaining, nRemaining);
+
+    //System.out.println(bi);
     if(bi == mRemaining){
       //if m remaining has stuff left, add it to the end of the answer
       for(int i = m; i < M.length; i++ ){
-        ans[i] = M[i];
+        ans[i + N.length] = M[i];
       }
     } else {
-      for(int i = n; i < N.length; n++){
-        ans[i] = N[i];
+
+      for(int i = n; i < N.length; i++){
+        ans[i + M.length] = N[i];
+        System.out.println(ans[i]);
       }
     }
 
@@ -44,5 +53,24 @@ public class Merge{
 
 
     }
+
+
+    //
+    public static void mergeSort(int[] list){
+      mergeH(0,list.length, list);
+    }
+
+    public static int[] mergeH(int lo, int hi, int[] list){
+      if(lo == hi) return list;
+
+      if(lo < hi){
+        int[] h1 = mergeH(lo, (lo + hi + 1)/2, list);
+        int[] h2 = mergeH(((lo + hi + 1)/2 + 1), hi, list);
+        return merge(h1, h2);
+      }
+
+      return list;
+    }
+
 
   }
