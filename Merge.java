@@ -60,16 +60,22 @@ public class Merge{
       mergeH(0,list.length, list);
     }
 
-    public static int[] mergeH(int lo, int hi, int[] list){
-      if(lo == hi) return list;
 
-      if(lo < hi){
-        int[] h1 = mergeH(lo, (lo + hi + 1)/2, list);
-        int[] h2 = mergeH(((lo + hi + 1)/2 + 1), hi, list);
+    public static int[] mergeH(int lo, int hi, int[] list){
+      if(lo >= hi) return list;
+
+      else{
+        
+        int[] h1 = mergeH(lo, list.length/2, list);
+
+        int[] h2 = mergeH(list.length/2 + 1, hi, list);
+
         return merge(h1, h2);
       }
 
-      return list;
+
+
+
     }
 
 
