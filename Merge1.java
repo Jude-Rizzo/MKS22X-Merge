@@ -54,13 +54,18 @@ public class Merge{
 
     }
 
+    public static void mergeSort(int[] N){
+      int[] h = mergeSort1(N);
+      System.out.println(Arrays.toString(h));
+      N = new int[h.length];
+      N = h;
+      System.out.println(N == h);
+    }
 
-
-    public static void mergeSort(int[] list){
-      list =  mergeH(0,list.length - 1, list);
-      System.out.println(Arrays.toString(mergeH(0,list.length - 1, list)));
-      System.out.println(Arrays.toString(list));
-
+    public static int[] mergeSort1(int[] list){
+      list = mergeH(0,list.length - 1, list);
+      //System.out.println(Arrays.toString(list));
+      return list;
     }
 
 
@@ -84,32 +89,21 @@ public class Merge{
 
     }
 
-
-
-
-
-    public static void insertionSort(int[] ary, int lo, int hi){
-      for(int i = lo + 1; i <= hi; i++){
-        int orig = ary[i];
-        int cur = i;
-        while(cur != 0 && ary[cur-1] > orig){
-          ary[cur] = ary[cur - 1]; //shift
-          cur --;
-        }
-        ary[cur] = orig;
+    public static String print(int[] M){
+      String ans = "";
+      for(int i = 0; i < M.length; i++){
+        ans += M[i] + " ";
       }
-      //System.out.prinln(ary);
+      return ans;
     }
 
   public static void main(String[] args){
     //test merge
-    int[] M = {5,1,3,0,3,2,1};
+    int[] M = {0,1,3,5};
     int[] N = {2,1};
     Merge.mergeSort(N);
     //int ans[] = Merge.merge(M,N);
-    mergeSort(M);
-    //System.out.println(Arrays.toString(M));
-
+    System.out.println(Arrays.toString(N));
   }
 
 
