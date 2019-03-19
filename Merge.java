@@ -25,7 +25,7 @@ public class Merge{
       //  System.out.println("m " + m);
       }
     }
-      System.out.println("out of the loop");
+      //System.out.println("out of the loop");
 
     //Now we still have the rest of the maximum array leftOver
     //find the maximum array, lets call it bigger
@@ -44,7 +44,7 @@ public class Merge{
 
       for(int i = n; i < N.length; i++){
         ans[i + M.length] = N[i];
-        System.out.println(ans[i]);
+        //System.out.println(ans[i]);
       }
     }
 
@@ -57,26 +57,44 @@ public class Merge{
 
     //
     public static void mergeSort(int[] list){
-      mergeH(0,list.length, list);
+      list = mergeH(0,list.length - 1, list);
     }
 
 
     public static int[] mergeH(int lo, int hi, int[] list){
-      if(lo >= hi) return list;
-
-      else{
-        
-        int[] h1 = mergeH(lo, list.length/2, list);
-
-        int[] h2 = mergeH(list.length/2 + 1, hi, list);
-
-        return merge(h1, h2);
+      System.out.println("lo: " + lo);
+      System.out.println("hi: " + hi);
+      //ok, we want to split up the list into much smaller lists
+      //we can start off by saying that if the list has length 1 or lo = hi, were gonna
+      //return a list with only that element
+      if(lo == hi){
+        int[] ans = new int[1];
+        ans[0] = list[lo];
+        return ans;
       }
-
-
-
-
+      //now we can mergeH the smaller cases
+      int[] h1 = mergeH(lo, (lo + hi)/2, list);
+      int[] h2 = mergeH((lo + hi)/2 + 1, hi, list);
+      System.out.println(Arrays.toString(merge(h1, h2)));
+      return merge(h1, h2);
     }
+
+    public static String print(int[] M){
+      String ans = "";
+      for(int i = 0; i < M.length; i++){
+        ans += M[i] + " ";
+      }
+      return ans;
+    }
+
+  public static void main(String[] args){
+    //test merge
+    int[] M = {0,1,3,5};
+    int[] N = {2,3,7,6,8,9};
+    Merge.mergeSort(N);
+    //int ans[] = Merge.merge(M,N);
+    System.out.println(Arrays.toString(N));
+  }
 
 
   }
