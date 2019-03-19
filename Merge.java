@@ -57,9 +57,18 @@ public class Merge{
 
 
     public static void mergeSort(int[] list){
-      list =  mergeH(0,list.length - 1, list);
-      System.out.println(Arrays.toString(mergeH(0,list.length - 1, list)));
-      System.out.println(Arrays.toString(list));
+      int[] list1 =  mergeH(0,list.length - 1, list);
+      for(int i = 0; i < list1.length; i++){
+        list[i] = list1[i];
+      }
+
+
+
+    }
+
+
+    public static void test(int t){
+      t = 1;
 
     }
 
@@ -109,7 +118,9 @@ public class Merge{
     //int ans[] = Merge.merge(M,N);
     mergeSort(M);
     //System.out.println(Arrays.toString(M));
-
+    int m = 3;
+    test(m);
+    System.out.println(m);
   }
 
 
