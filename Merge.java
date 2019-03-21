@@ -79,16 +79,27 @@ public class Merge{
       //ok, we want to split up the list into much smaller lists
       //we can start off by saying that if the list has length 1 or lo = hi, were gonna
       //return a list with only that element
+
       if(lo == hi){
         int[] ans = new int[1];
         ans[0] = list[lo];
         return ans;
       }
       //now we can mergeH the smaller cases
+    /*  if(lo > hi - 20){
+        int[] h1 = insertionSort(list, lo, hi);
+        int[] h2 = new int[hi - lo];
+        for(int i = lo; i < hi; i++){
+          h2[i - lo] = h1[i];
+        }
+        return h2;
+      } else {*/
       int[] h1 = mergeH(lo, (lo + hi)/2, list);
       int[] h2 = mergeH((lo + hi)/2 + 1, hi, list);
-      //System.out.println(Arrays.toString(merge(h1, h2)));
       return merge(h1, h2);
+
+      //System.out.println(Arrays.toString(merge(h1, h2)));
+
 
 
     }
@@ -97,7 +108,7 @@ public class Merge{
 
 
 
-    public static void insertionSort(int[] ary, int lo, int hi){
+    public static int[] insertionSort(int[] ary, int lo, int hi){
       for(int i = lo + 1; i <= hi; i++){
         int orig = ary[i];
         int cur = i;
@@ -108,6 +119,7 @@ public class Merge{
         ary[cur] = orig;
       }
       //System.out.prinln(ary);
+      return ary;
     }
 
   public static void main(String[] args){
